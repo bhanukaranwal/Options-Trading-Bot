@@ -1,0 +1,48 @@
+# Platform Configuration for Options Trading Bot
+
+# Zerodha Kite API Credentials
+# WARNING: For production, use a secure secret management system.
+# The access_token needs to be generated daily.
+api:
+  api_key: "YOUR_API_KEY"
+  api_secret: "YOUR_API_SECRET_BASE64_ENCODED" # Use base64 for simple encoding
+  access_token: "YOUR_ACCESS_TOKEN"
+
+# Trading Parameters
+trading:
+  default_symbol: "NIFTY"
+  default_capital: 100000.0 # Starting capital in INR
+  timeframe: "1minute" # Supported: 1minute, 5minute, 1day
+
+# Symbol-Specific Details (NSE)
+symbols:
+  NIFTY:
+    lot_size: 25
+    instrument_prefix: "NIFTY"
+    exchange: "NFO"
+  BANKNIFTY:
+    lot_size: 15
+    instrument_prefix: "BANKNIFTY"
+    exchange: "NFO"
+  FINNIFTY:
+    lot_size: 40
+    instrument_prefix: "FINNIFTY"
+    exchange: "NFO"
+
+# Backtesting Engine Settings
+backtesting:
+  historical_data_path: "nifty_options_data.csv"
+  slippage_percent: 0.05 # 0.05% slippage on trades
+  commission_per_trade: 20.0 # Flat brokerage per trade (e.g., Zerodha)
+
+# Risk Management Parameters
+risk:
+  max_portfolio_drawdown_percent: 10.0 # Max portfolio loss before halting trades
+  max_trade_risk_percent: 2.0 # Max percentage of capital to risk on a single trade
+  var_confidence_level: 0.95 # 95% VaR confidence level
+  circuit_breaker_threshold_percent: 5.0 # Halt trading if underlying moves >5% in a short period
+
+# Logging Configuration
+logging:
+  level: "INFO" # DEBUG, INFO, WARNING, ERROR
+  file: "trading_platform.log"
